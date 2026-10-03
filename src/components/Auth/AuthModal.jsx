@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   X, 
   Mail, 
@@ -21,6 +22,7 @@ import { supabase } from '../../supabaseClient';
 import { CREATOR_EMAIL } from '../../services/cloudDatabaseService';
 
 export const AuthModal = () => {
+  const navigate = useNavigate();
   const {
     isAuthOpen,
     setIsAuthOpen,
@@ -515,7 +517,7 @@ export const AuthModal = () => {
                   <button
                     onClick={() => {
                       handleClose();
-                      setIsAdminOpen(true);
+                      setIsAdminOpen(true); navigate('/admin');
                     }}
                     className="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md flex items-center gap-2 cursor-pointer transition-all active:scale-95"
                   >
