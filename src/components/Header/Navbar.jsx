@@ -71,8 +71,8 @@ export const Navbar = () => {
         p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (p.titleRu && p.titleRu.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (p.titleEn && p.titleEn.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.subcategory.toLowerCase().includes(searchQuery.toLowerCase())
+        p.category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.subcategory?.toLowerCase().includes(searchQuery.toLowerCase())
       ).slice(0, 5)
     : [];
 

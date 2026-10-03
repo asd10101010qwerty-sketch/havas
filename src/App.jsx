@@ -66,8 +66,8 @@ export default function App() {
         p.title.toLowerCase().includes(q) ||
         (p.titleRu && p.titleRu.toLowerCase().includes(q)) ||
         (p.titleEn && p.titleEn.toLowerCase().includes(q)) ||
-        p.category.toLowerCase().includes(q) ||
-        p.subcategory.toLowerCase().includes(q) ||
+        p.category?.toLowerCase().includes(q) ||
+        p.subcategory?.toLowerCase().includes(q) ||
         (p.seller && p.seller.toLowerCase().includes(q))
       );
     }
@@ -85,7 +85,7 @@ export default function App() {
     if (selectedSubcategory) {
       const subFilter = (typeof selectedSubcategory === 'object' ? selectedSubcategory.title : selectedSubcategory) || '';
       result = result.filter(p => 
-        (p.subcategory && p.subcategory.toLowerCase().includes(subFilter.toLowerCase())) ||
+        (p.subcategory && p.subcategory?.toLowerCase().includes(subFilter.toLowerCase())) ||
         (p.title && p.title.toLowerCase().includes(subFilter.toLowerCase()))
       );
     }

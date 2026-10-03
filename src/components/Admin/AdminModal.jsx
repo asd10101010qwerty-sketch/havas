@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { 
   X, Search, Bell, Grid, Sun, Moon, Settings, LogOut, LayoutDashboard, User, CheckCircle2,
   Package, ShoppingCart, Users, Layers, Monitor, Type, FormInput, FileText, ChevronRight,
@@ -271,7 +272,11 @@ export const AdminModal = () => {
     { name: 'Sut', value: products.filter(p => p.category === 'sut-mahsulotlari').length || 15, color: '#1890ff' },
   ];
 
-  if (!isAdminOpen) return null;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isOpen = isAdminOpen || location.pathname === '/admin';
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-gray-100 dark:bg-[#0f0f11] z-[100] flex overflow-hidden font-sans text-gray-700 dark:text-gray-300 transition-colors">
@@ -407,6 +412,7 @@ export const AdminModal = () => {
                     <button onClick={() => {
                       if (logoutUser) logoutUser();
                       setIsAdminOpen(false);
+  if (location.pathname === '/admin') navigate('/');
                       setIsProfileOpen(false);
                       showToast('Tizimdan chiqildi');
                     }} className="w-full text-left px-4 py-2 hover:bg-red-50 dark:hover:bg-red-500/10 text-sm text-red-500 flex items-center gap-2">
@@ -417,7 +423,7 @@ export const AdminModal = () => {
               )}
             </div>
             
-            <button onClick={() => setIsAdminOpen(false)} className="text-gray-400 hover:text-red-500 ml-2">
+            <button onClick={() => { setIsAdminOpen(false); if(location.pathname === '/admin') navigate('/'); }} className="text-gray-400 hover:text-red-500 ml-2">
               <X size={24} />
             </button>
           </div>
